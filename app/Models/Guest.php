@@ -9,7 +9,7 @@ class Guest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'phone', 'rsvp_status'];
+    protected $fillable = ['name', 'email', 'phone', 'rsvp_status',];
 
     /**
      * Relasi: Seorang Tamu memiliki satu Voucher.

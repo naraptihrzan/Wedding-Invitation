@@ -12,9 +12,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Http; // Tambahkan ini
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Encoding\Encoding;
 
 class GenerateVoucherJob implements ShouldQueue
 {
@@ -22,113 +24,113 @@ class GenerateVoucherJob implements ShouldQueue
 
     protected $guest;
 
-    /**
-     * Create a new job instance.
-     */
     public function __construct(Guest $guest)
     {
         $this->guest = $guest;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
         try {
-            // 1. Cek apakah tamu sudah punya voucher
+
+            // Jika sudah ada voucher, skip
             if ($this->guest->voucher) {
-                Log::info("Tamu {$this->guest->email} sudah memiliki voucher.");
+                Log::info("{$this->guest->email} sudah memiliki voucher.");
                 return;
             }
 
-            // 2. Buat kode voucher unik
+            // Generate kode voucher
             $code = 'WEDD-VOUCHER-' . Str::upper(Str::random(10));
 
-            // 3. Simpan voucher ke database
+            // Simpan voucher ke database
             $voucher = Voucher::create([
                 'guest_id' => $this->guest->id,
-                'code' => $code,
-                'status' => 'unused',
+                'code'     => $code,
+                'status'   => 'unused',
             ]);
 
-            // 4. Generate QR Code (sebagai data URI untuk di-embed di email)
-            $qrCodeData = QrCode::format('png')->size(300)->generate($voucher->code);
-            
-            // Konversi ke base64 untuk di-embed
-            $qrCodeBase64 = 'data:image/png;base64,' . base64_encode($qrCodeData);
+            /**
+             * ====================================================
+             * QR CODE GENERATOR
+             * ====================================================
+             */
 
-            // 5. Kirim email
-            Mail::to($this->guest->email)->send(new VoucherNotification($this->guest, $qrCodeBase64));
+            $fileName = 'qr_' . $voucher->code . '.png';
+            $filePath = storage_path('app/public/' . $fileName);
 
-            // 6. Kirim WA menggunakan WAHA
-            $this->sendWhatsApp($this->guest, $qrCodeBase64);
+            $qrResult = Builder::create()
+                ->writer(new PngWriter())
+                ->data($voucher->code)
+                ->encoding(new Encoding('UTF-8'))
+                ->size(300)
+                ->margin(10)
+                ->build();
 
-            Log::info("Voucher {$code} berhasil dibuat untuk {$this->guest->email}.");
+            // Simpan QR ke storage/public
+            file_put_contents($filePath, $qrResult->getString());
+
+            // URL publik untuk WhatsApp
+            $qrUrl = asset('storage/' . $fileName);
+
+            // Base64 untuk email
+            $qrBase64 = 'data:image/png;base64,' . base64_encode($qrResult->getString());
+
+            /**
+             * ====================================================
+             * KIRIM EMAIL
+             * ====================================================
+             */
+
+            Mail::to($this->guest->email)
+                ->send(new VoucherNotification($this->guest, $qrBase64));
+
+            /**
+             * ====================================================
+             * KIRIM WHATSAPP
+             * ====================================================
+             */
+
+            $this->sendWhatsApp($this->guest, $qrUrl);
+
+            Log::info("Voucher {$code} berhasil dibuat dan dikirim ke {$this->guest->email}.");
 
         } catch (\Exception $e) {
-            Log::error("Gagal membuat voucher untuk {$this->guest->email}: " . $e->getMessage());
+
+            Log::error("Gagal membuat voucher untuk {$this->guest->email}: {$e->getMessage()}");
         }
     }
 
     /**
-     * Helper function untuk mengirim WhatsApp via WAHA.
+     * ====================================================
+     * SEND WHATSAPP VIA FONNTE API
+     * ====================================================
      */
-    protected function sendWhatsApp(Guest $guest, string $qrCodeBase64)
+    protected function sendWhatsApp(Guest $guest, string $qrUrl)
     {
-        // Ambil konfigurasi dari config/services.php
-        $baseUrl = config('services.waha.base_url');
-        $session = config('services.waha.session');
-        $apiKey = config('services.waha.api_key');
-    
-        if (!$baseUrl) {
-            Log::error('WAHA Error: WAHA_BASE_URL tidak diatur.');
-            return;
-        }
-    
-        // Nomor WA harus dalam format 62... (tanpa +)
-        $phone = $guest->phone;
-        if (str_starts_with($phone, '+')) {
-            $phone = substr($phone, 1);
-        }
-    
-        // Pesan teks
-        $caption = "Halo {$guest->name}, terima kasih telah RSVP. Ini adalah voucher diskon 10% Anda. Tunjukkan QR Code ini kepada tim merchandise.";
-    
-        // Endpoint WAHA untuk mengirim pesan dengan media (base64)
-        // Referensi: [https://waha.devlike.pro/docs/http-api/sending/media](https://waha.devlike.pro/docs/http-api/sending/media)
-        $endpoint = "{$baseUrl}/api/sessions/{$session}/messages";
-    
+        $apiKey = config('services.fonnte.api_key');
+        $phone = ltrim($guest->phone, '+'); // Bersihkan format nomor
+
+        $caption = "Halo {$guest->name}, terima kasih telah melakukan RSVP.
+Berikut voucher diskon 10% Anda. Silakan tunjukkan QR Code berikut kepada vendor.";
+
         try {
-            $headers = [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-            ];
-            
-            // Tambahkan API Key jika ada di konfigurasi
-            if (!empty($apiKey)) {
-                $headers['X-Api-Key'] = $apiKey;
+
+            $response = Http::withHeaders([
+                'Authorization' => $apiKey,
+            ])->post('https://api.fonnte.com/send', [
+                'target'  => $phone,
+                'message' => $caption,
+                'url'     => $qrUrl, // Kirim QR sebagai image
+            ]);
+
+            if ($response->successful()) {
+                Log::info("Fonnte: Pesan terkirim ke {$phone}");
+            } else {
+                Log::error("Fonnte error ({$phone}): " . $response->body());
             }
 
-            $response = Http::withHeaders($headers)
-            ->post($endpoint, [
-                'chatId' => "{$phone}@c.us", // Format @c.us untuk nomor pribadi
-                'media' => $qrCodeBase64,     // Kirim data base64
-                'caption' => $caption,
-                'mimetype' => 'image/png', // Opsional tapi disarankan
-                'filename' => 'voucher-qr.png' // Opsional
-            ]);
-    
-            if ($response->successful()) {
-                Log::info("Notifikasi WA (WAHA) terkirim ke {$phone}");
-            } else {
-                Log::error("Gagal kirim WA (WAHA) ke {$phone}: " . $response->body());
-            }
-    
         } catch (\Exception $e) {
-            Log::error("Exception saat kirim WA (WAHA) ke {$phone}: " . $e->getMessage());
+            Log::error("Fonnte exception: {$e->getMessage()}");
         }
     }
 }
-
-

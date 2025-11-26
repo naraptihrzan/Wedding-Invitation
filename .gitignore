@@ -23,4 +23,8 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 waha/sessions/
+sessions/
+webjs/
+*.cookie
+
 

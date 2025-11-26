@@ -2,52 +2,36 @@
 
 namespace App\Mail;
 
+use App\Models\Guest;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class VoucherNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public Guest $guest;
+    public string $qrCodeBase64;
+
+    public function __construct(Guest $guest, string $qrCodeBase64)
     {
-        //
+        $this->guest = $guest;
+        $this->qrCodeBase64 = $qrCodeBase64;
     }
 
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
+    public function build()
     {
-        return new Envelope(
-            subject: 'Voucher Notification',
+        // decode base64 → binary PNG
+        $binary = base64_decode(
+            str_replace('data:image/png;base64,', '', $this->qrCodeBase64)
         );
-    }
 
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return $this->subject('Voucher Spesial Untuk Anda!')
+            ->view('emails.voucher')
+            ->with([
+                'guest' => $this->guest,
+                'qrBinary' => $binary,
+            ]);
     }
 }

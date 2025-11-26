@@ -1,238 +1,676 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Budi & Siti</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Undangan Pernikahan - Rangga & Madinna</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
-
-    <div id="cover">
-        <div class="cover-content" data-aos="zoom-in" data-aos-duration="1500">
-            <p>The Wedding Of</p>
-            <h1 class="script-font" style="color: var(--secondary-color);">Budi & Siti</h1>
-            <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <div class="guest-name" id="guestNameArea">Tamu Undangan</div>
-            <button class="btn-gold" onclick="openInvitation()">
-                <i class="fas fa-envelope-open-text"></i> Buka Undangan
-            </button>
+    <header class="floating-nav" id="floating-nav">
+        <div class="nav-brand" onclick="scrollToSection('hero')">
+            <span>R</span>
+            <span>&</span>
+            <span>M</span>
         </div>
-    </div>
-
-    <div id="main-content">
-        
-        <div class="music-control" id="musicBtn" onclick="toggleMusic()">
-            <i class="fas fa-music"></i>
-        </div>
-        <button class="love-btn" onclick="spamLove()">
-            <i class="fas fa-heart"></i>
+        <nav class="nav-links" id="nav-links">
+            <a href="#hero" data-nav="hero">Home</a>
+            <a href="#couple" data-nav="couple">Bride & Groom</a>
+            <a href="#events" data-nav="events">Ceremony</a>
+            <a href="#timeline" data-nav="timeline">Traditions</a>
+            <a href="#gallery" data-nav="gallery">Gallery</a>
+            <a href="#rsvp" data-nav="rsvp">RSVP</a>
+            <a href="#map" data-nav="map">Location</a>
+        </nav>
+        <button class="nav-cta" onclick="scrollToSection('rsvp')">Konfirmasi</button>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
-        
-        <audio id="bgMusic" loop>
-            <source src="https://cdn.pixabay.com/download/audio/2022/02/07/audio_183e313d99.mp3?filename=piano-moment-11305.mp3" type="audio/mp3">
-        </audio>
+    </header>
 
-        <section class="hero-section">
-            <div class="hero-overlay" data-aos="fade-up">
-                <div class="script-font" style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 20px;">Save The Date</div>
-                <h1 style="font-size: 3rem; margin-bottom: 10px;">Budi & Siti</h1>
-                <p style="font-size: 1.2rem; margin-bottom: 30px; font-weight: 300;">Rabu, 31 Desember 2025</p>
-                <div style="width: 50px; height: 2px; background: var(--secondary-color); margin: 0 auto;"></div>
-                <p style="margin-top: 30px; font-style: italic;">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya..."</p>
-                <p><strong>(QS. Ar-Rum: 21)</strong></p>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="hero" data-section="hero">
+        <svg class="batik-pattern" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="batik-kawung" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <circle cx="40" cy="40" r="15" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                    <circle cx="40" cy="40" r="10" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                    <circle cx="0" cy="0" r="15" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                    <circle cx="80" cy="0" r="15" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                    <circle cx="0" cy="80" r="15" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                    <circle cx="80" cy="80" r="15" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                    <path d="M 30 30 Q 40 35 50 30 Q 45 40 50 50 Q 40 45 30 50 Q 35 40 30 30 Z" fill="none"
+                        stroke="#8B6F47" stroke-width="0.3" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#batik-kawung)" />
+        </svg>
 
-        <section class="section-padding container">
-            <div class="text-center" style="text-align: center; margin-bottom: 50px;">
-                <h2 class="script-font" style="font-size: 3rem; color: var(--primary-color);" data-aos="fade-down">Mempelai</h2>
-            </div>
-            
-            <div class="couple-grid">
-                <div class="couple-card" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Budi" class="couple-img">
-                    <h3 style="font-size: 2rem;">Budi Santoso</h3>
-                    <p>Putra dari Bpk. Ahmad & Ibu Ratna</p>
-                    <div class="couple-socials" style="margin-top: 15px;">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="hero-content">
+            <div class="hero-frame">
+                <div class="frame-border-1"></div>
+                <div class="frame-border-2"></div>
+
+                <div style="position: relative;">
+                    <p class="hero-subtitle" data-animate="fade-up" data-delay="0">The Wedding of</p>
+                    <h1 class="couple-names" data-animate="fade-up" data-delay="100">Rangga & Madinna</h1>
+                    <div class="divider" data-animate="fade-up" data-delay="150"></div>
+                    <p class="hero-text" data-animate="fade-up" data-delay="200">
+                        With heartfelt gratitude, we joyfully invite you to share in the celebration of our marriage.
+                    </p>
+
+                    <p class="countdown-title" id="countdown-date" data-animate="fade-up" data-delay="250">
+                        Counting down to December 2
+                    </p>
+                    <div class="countdown" aria-live="polite" data-animate="fade-up" data-delay="300">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-days">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-hours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-minutes">00</span>
+                            <span class="countdown-label">minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-seconds">00</span>
+                            <span class="countdown-label">seconds</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions" data-animate="fade-up" data-delay="350">
+                        <button class="btn-open" onclick="openInvitation()">Open Invitation</button>
+                        <button class="btn-secondary" onclick="scrollToSection('events')">Event Details</button>
                     </div>
                 </div>
-                
-                <div class="text-center" style="display: flex; align-items: center; justify-content: center;">
-                    <h1 class="script-font" style="font-size: 4rem; color: var(--secondary-color);">&</h1>
-                </div>
 
-                <div class="couple-card" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Siti" class="couple-img">
-                    <h3 style="font-size: 2rem;">Siti Aminah</h3>
-                    <p>Putri dari Bpk. Hasan & Ibu Dewi</p>
-                    <div class="couple-socials" style="margin-top: 15px;">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                <div class="hero-badges" data-animate="fade-up" data-delay="400">
+                    <div class="hero-badge">
+                        <p class="hero-badge-title">Date of Ceremony</p>
+                        <p class="hero-badge-value">2 December 2025</p>
+                    </div>
+                    <div class="hero-badge">
+                        <p class="hero-badge-title">Venue</p>
+                        <p class="hero-badge-value">Hall of SMK Telkom Purwokerto</p>
+                    </div>
+                    <div class="hero-badge">
+                        <p class="hero-badge-title">Dress Code</p>
+                        <p class="hero-badge-value">Modern Javanese Attire</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <div class="countdown-wrapper">
-            <h2 data-aos="zoom-in">Menuju Hari Bahagia</h2>
-            <div class="countdown-timer" id="countdown">
-                <div class="timer-box">
-                    <div class="timer-number" id="days">00</div>
-                    <div>Hari</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-number" id="hours">00</div>
-                    <div>Jam</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-number" id="minutes">00</div>
-                    <div>Menit</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-number" id="seconds">00</div>
-                    <div>Detik</div>
-                </div>
-            </div>
-            <div style="margin-top: 40px;">
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Budi+%26+Siti&dates=20251231T080000/20251231T150000" target="_blank" class="btn-gold" style="background: white; color: var(--primary-color);">
-                    <i class="far fa-calendar-plus"></i> Simpan Tanggal
-                </a>
             </div>
         </div>
 
-        <section class="section-padding container">
-            <h2 class="script-font" style="text-align: center; font-size: 3rem; color: var(--primary-color); margin-bottom: 50px;" data-aos="fade-up">Rangkaian Acara</h2>
-            
-            <div class="glass-card event-card" data-aos="fade-up" data-aos-delay="100">
-                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px;">
-                    <div style="flex: 1; min-width: 250px;">
-                        <i class="fas fa-handshake event-icon"></i>
-                        <h3>Akad Nikah</h3>
-                        <p style="margin-top: 10px;"><strong>Rabu, 31 Desember 2025</strong></p>
-                        <p>Pukul 08.00 WIB - Selesai</p>
-                        <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Kediaman Mempelai Wanita</strong></p>
-                        <p style="font-size: 0.9rem; color: #666;">Jl. Melati No. 123, Jakarta Selatan</p>
-                    </div>
-                    <div>
-                        <a href="#" class="btn-gold"><i class="fas fa-location-arrow"></i> Google Maps</a>
-                    </div>
-                </div>
-            </div>
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+    </section>
 
-            <div class="glass-card event-card" data-aos="fade-up" data-aos-delay="200">
-                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 30px;">
-                    <div style="flex: 1; min-width: 250px;">
-                        <i class="fas fa-glass-cheers event-icon"></i>
-                        <h3>Resepsi Pernikahan</h3>
-                        <p style="margin-top: 10px;"><strong>Rabu, 31 Desember 2025</strong></p>
-                        <p>Pukul 11.00 WIB - 15.00 WIB</p>
-                        <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Grand Ballroom Hotel Mulia</strong></p>
-                        <p style="font-size: 0.9rem; color: #666;">Jl. Asia Afrika, Senayan, Jakarta</p>
-                    </div>
-                    <div>
-                        <a href="#" class="btn-gold"><i class="fas fa-location-arrow"></i> Google Maps</a>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="section-padding" style="background-color: #fff;">
+
+    <!-- Content (Initially Hidden) -->
+    <div id="invitation-content" class="hidden">
+        <!-- Couple Section -->
+        <section id="couple" data-section="couple">
             <div class="container">
-                <h2 class="script-font" style="text-align: center; font-size: 3rem; color: var(--primary-color); margin-bottom: 40px;" data-aos="fade-up">Galeri Foto</h2>
+                <div class="couple-intro" data-animate="fade-up">
+                    <p class="bismillah">In the Name of Allah, the Most Gracious, the Most Merciful</p>
+                    <h2>Assalamu'alaikum Warahmatullahi Wabarakatuh</h2>
+                    <p style="color: var(--brown); margin-top: 1.5rem;">
+                        Glory be to Allah, who created His beings in pairs. O Allah, grant us the blessing to unite the love You have placed between us.
+                    </p>
+                </div>
+
+                <div class="couple-grid">
+                    <!-- Bride -->
+                    <div class="couple-card" data-animate="fade-right">
+                        <div class="couple-photo-wrapper">
+                            <div class="photo-frame"></div>
+                            <div class="couple-photo">
+                                <img src="assets/image/madinah.jpg" alt="Madinna">
+                            </div>
+                        </div>
+                        <h3 class="couple-name">Madinna Naila Kalyca Hoffi</h3>
+                        <div class="couple-parents">
+                            <span>Daughter of</span>
+                            Mr. Fadhil Putra & Mrs. Nadia Mira
+                        </div>
+                    </div>
+
+                    <!-- Groom -->
+                    <div class="couple-card" data-animate="fade-left">
+                        <div class="couple-photo-wrapper">
+                            <div class="photo-frame"></div>
+                            <div class="couple-photo">
+                                <img src="assets/image/rangga.jpg" alt="Rangga">
+                            </div>
+                        </div>
+                        <h3 class="couple-name">Rangga Prayoga Wibowo</h3>
+                        <div class="couple-parents">
+                            <span>Son of</span>
+                            Mr. Avichena & Mrs. Mischa Riyumi
+                        </div>
+                    </div>
+                </div>
+
+                <div class="melati-divider">
+                    <div class="melati-line"></div>
+                    <svg width="32" height="32" viewBox="0 0 80 80" fill="none">
+                        <circle cx="40" cy="40" r="6" fill="#C9A86A" opacity="0.8" />
+                        <ellipse cx="40" cy="25" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="55" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="40" cy="55" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="25" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A" />
+                    </svg>
+                    <div class="melati-line"></div>
+                </div>
+
+                <div class="love-story">
+                    <p>
+                        “Our journey began with His divine will. With each step, we learned to complete one another. Now, we are ready to unite our hearts in the sacred bond of marriage, embracing the noble values of Javanese tradition as the foundation of our family.”
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details -->
+        <section id="events" data-section="events">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 3rem;" data-animate="fade-up">
+                    <h2>Ceremony & Reception</h2>
+                    <p style="color: var(--brown); margin-top: 1rem;">
+                        It is our greatest honor to welcome your presence at this joyous occasion.
+                    </p>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Akad -->
+                    <div class="event-card" data-animate="fade-up">
+                        <div class="event-icon">
+                            <svg viewBox="0 0 100 120" fill="none">
+                                <path d="M50 5 L85 100 L15 100 Z" stroke="#C9A86A" stroke-width="1.5" fill="none" />
+                                <path d="M50 5 L75 100" stroke="#C9A86A" stroke-width="0.5" opacity="0.5" />
+                                <path d="M50 5 L25 100" stroke="#C9A86A" stroke-width="0.5" opacity="0.5" />
+                                <circle cx="50" cy="25" r="4" fill="#C9A86A" opacity="0.6" />
+                                <circle cx="42" cy="45" r="3" fill="#C9A86A" opacity="0.4" />
+                                <circle cx="58" cy="45" r="3" fill="#C9A86A" opacity="0.4" />
+                            </svg>
+                        </div>
+                        <h3 class="event-title">The Marriage Solemnization</h3>
+                        <div class="event-details">
+                            <div class="event-detail-item">
+                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" />
+                                    <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" />
+                                    <line x1="3" y1="10" x2="21" y2="10" stroke-width="2" />
+                                </svg>
+                                <div>
+                                    <p style="color: var(--brown-dark);">Tuesday, December 2 2025</p>
+                                </div>
+                            </div>
+                            <div class="event-detail-item">
+                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                    <polyline points="12 6 12 12 16 14" stroke-width="2" />
+                                </svg>
+                                <div>
+                                    <p style="color: var(--brown-dark);">08.00 - 10.00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="event-detail-item">
+                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2" />
+                                    <circle cx="12" cy="10" r="3" stroke-width="2" />
+                                </svg>
+                                <div>
+                                    <p style="color: var(--brown-dark);">Hall of SMK Telkom Purwokerto</p>
+                                    <p style="color: var(--brown); font-size: 0.875rem; margin-top: 0.25rem;">
+                                        Jln. di pandjaitan no. 128
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resepsi -->
+                    <div class="event-card" data-animate="fade-up" data-delay="100">
+                        <div class="event-icon">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <circle cx="40" cy="40" r="6" fill="#C9A86A" opacity="0.8" />
+                                <ellipse cx="40" cy="25" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A"
+                                    stroke-width="1" />
+                                <ellipse cx="55" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A"
+                                    stroke-width="1" />
+                                <ellipse cx="40" cy="55" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A"
+                                    stroke-width="1" />
+                                <ellipse cx="25" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A"
+                                    stroke-width="1" />
+                            </svg>
+                        </div>
+                        <h3 class="event-title">Wedding Reception</h3>
+                        <div class="event-details">
+                            <div class="event-detail-item">
+                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" />
+                                    <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" />
+                                    <line x1="3" y1="10" x2="21" y2="10" stroke-width="2" />
+                                </svg>
+                                <div>
+                                    <p style="color: var(--brown-dark);">Tuesday, December 2 2025</p>
+                                </div>
+                            </div>
+                            <div class="event-detail-item">
+                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke-width="2" />
+                                    <polyline points="12 6 12 12 16 14" stroke-width="2" />
+                                </svg>
+                                <div>
+                                    <p style="color: var(--brown-dark);">11.00 - 15.00 WIB</p>
+                                </div>
+                            </div>
+                            <div class="event-detail-item">
+                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2" />
+                                    <circle cx="12" cy="10" r="3" stroke-width="2" />
+                                </svg>
+                                <div>
+                                    <p style="color: var(--brown-dark);">Hall of SMK Telkom Purwokerto</p>
+                                    <p style="color: var(--brown); font-size: 0.875rem; margin-top: 0.25rem;">
+                                        Jln. di pandjaitan no. 128
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div class="event-note">
+                        <p style="font-size: 0.875rem;">
+                            <span style="color: var(--gold);">❖</span> With utmost respect, we kindly inform that this invitation is extended only to those listed.<span style="color: var(--gold);">❖</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" data-section="timeline">
+            <div class="container">
+                <div class="text-center timeline-head" data-animate="fade-up">
+                    <p class="bismillah">Traditional Procession</p>
+                    <h2>The Journey to the Ceremony</h2>
+                    <p style="color: var(--brown); max-width: 640px; margin: 1rem auto 0;">
+                    Every ritual carries profound meaning, symbolizing the blessings and prayers of our families.
+                </p>
+                </div>
+                <div class="timeline-grid">
+                    <article class="timeline-card" data-animate="fade-left">
+                        <p class="timeline-order">01</p>
+                        <h3>Siraman</h3>
+                        <p>A cleansing ritual to purify the body and soul as a preparation for the sacred wedding ceremony.</p>
+                        <div class="timeline-meta">
+                            <span>2-Dec</span>
+                            <span>Hall of SMK Telkom Purwokerto</span>
+                        </div>
+                    </article>
+                    <article class="timeline-card" data-animate="fade-left" data-delay="100">
+                        <p class="timeline-order">02</p>
+                        <h3>Midodareni</h3>
+                        <p>An evening of heartfelt prayers, seeking blessings and harmony from the extended family.</p>
+                        <div class="timeline-meta">
+                            <span>2-Dec</span>
+                            <span>Hall of SMK Telkom Purwokerto</span>
+                        </div>
+                    </article>
+                    <article class="timeline-card" data-animate="fade-left" data-delay="150">
+                        <p class="timeline-order">03</p>
+                        <h3>Akad Nikah</h3>
+                        <p>A sacred marriage solemnization, marking the beginning of our journey as husband and wife.</p>
+                        <div class="timeline-meta">
+                            <span>2-Dec</span>
+                            <span>Hall of SMK Telkom Purwokerto</span>
+                        </div>
+                    </article>
+                    <article class="timeline-card" data-animate="fade-left" data-delay="200">
+                        <p class="timeline-order">04</p>
+                        <h3>Resepsi</h3>
+                        <p>A joyful celebration shared with family and closest friends to honor the union of our hearts.</p>
+                        <div class="timeline-meta">
+                            <span>2-Dec</span>
+                            <span>Hall of SMK Telkom Purwokerto</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Traditional Section -->
+        <section id="traditional" data-section="traditional">
+            <svg class="batik-pattern" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="batik-dark" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                        <circle cx="40" cy="40" r="15" fill="none" stroke="#C9A86A" stroke-width="0.5" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#batik-dark)" />
+            </svg>
+
+            <div class="traditional-content">
+                <div class="traditional-icon">
+                    <svg width="128" height="128" viewBox="0 0 100 120" fill="none"
+                        style="opacity: 0.8; margin: 0 auto;">
+                        <path d="M50 5 L85 100 L15 100 Z" stroke="#C9A86A" stroke-width="1.5" fill="none" />
+                        <path d="M50 5 L75 100" stroke="#C9A86A" stroke-width="0.5" opacity="0.5" />
+                        <path d="M50 5 L25 100" stroke="#C9A86A" stroke-width="0.5" opacity="0.5" />
+                        <circle cx="50" cy="25" r="4" fill="#C9A86A" opacity="0.6" />
+                        <circle cx="42" cy="45" r="3" fill="#C9A86A" opacity="0.4" />
+                        <circle cx="58" cy="45" r="3" fill="#C9A86A" opacity="0.4" />
+                        <circle cx="38" cy="65" r="2.5" fill="#C9A86A" opacity="0.3" />
+                        <circle cx="50" cy="60" r="2.5" fill="#C9A86A" opacity="0.3" />
+                        <circle cx="62" cy="65" r="2.5" fill="#C9A86A" opacity="0.3" />
+                    </svg>
+                </div>
+
+                <h2 style="color: var(--cream); margin-bottom: 1.5rem;">Javanese Tradition</h2>
+                <div
+                    style="width: 128px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 1.5rem auto; opacity: 0.6;">
+                </div>
+
+                <p
+                    style="color: var(--cream); font-size: 1.125rem; line-height: 1.8; opacity: 0.9; margin-bottom: 1.5rem;">
+                    Rooted in Javanese culture, each custom reflects prayers, hopes, and noble virtues.
+                </p>
+
+                <p style="color: #E5DCC5; line-height: 1.75; opacity: 0.8; margin-bottom: 2rem;">
+                In Javanese heritage, marriage is not only the union of two souls, but also the joining of two families. Each ritual holds deep philosophical significance — from siraman as a symbol of purity, midodareni as a symbol of readiness, to panggih as the sacred union itself. We embrace each stage with gratitude and prayers for a blessed life together.
+                </p>
+
+                <div class="traditional-grid">
+                    <div class="traditional-item" data-animate="fade-up">
+                        <div class="traditional-item-icon">❀</div>
+                        <h4>Siraman</h4>
+                        <p>A cleansing of body and soul as a symbol of purity.</p>
+                    </div>
+                    <div class="traditional-item" data-animate="fade-up" data-delay="100">
+                        <div class="traditional-item-icon">❀</div>
+                        <h4>Midodareni</h4>
+                        <p>A night filled with prayers before the akad nikah ceremony.</p>
+                    </div>
+                    <div class="traditional-item" data-animate="fade-up" data-delay="150">
+                        <div class="traditional-item-icon">❀</div>
+                        <h4>Panggih</h4>
+                        <p>The meeting of the bride and groom in a sacred union.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="watercolor-effect watercolor-1"></div>
+            <div class="watercolor-effect watercolor-2"></div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" data-section="gallery">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 3rem;">
+                    <h2>Our Moments</h2>
+                    <p style="color: var(--brown); margin-top: 1rem;">Cherished memories captured along our journey.</p>
+                </div>
+
                 <div class="gallery-grid">
-                    <div class="gallery-item" data-aos="zoom-in">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 1">
+                    <div class="gallery-item" onclick="openLightbox(0)" data-animate="scale-in">
+                        <img src="https://images.unsplash.com/photo-1651924739855-ef03b6b9f929?w=400" alt="Gallery 1">
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="https://images.unsplash.com/photo-1519225448526-0f85151d27df?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 2">
+                    <div class="gallery-item" onclick="openLightbox(1)" data-animate="scale-in" data-delay="50">
+                        <img src="https://images.unsplash.com/photo-1514846528774-8de9d4a07023?w=400" alt="Gallery 2">
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="https://images.unsplash.com/photo-1511285560982-1356c11d4606?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 3">
+                    <div class="gallery-item" onclick="openLightbox(2)" data-animate="scale-in" data-delay="100">
+                        <img src="https://images.unsplash.com/photo-1519657502999-ab785d28a1f6?w=400" alt="Gallery 3">
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="https://images.unsplash.com/photo-1520854221250-85d30221754b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 4">
+                    <div class="gallery-item" onclick="openLightbox(3)" data-animate="scale-in" data-delay="150">
+                        <img src="https://images.unsplash.com/photo-1762708592558-f20927d09a43?w=400" alt="Gallery 4">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(4)" data-animate="scale-in" data-delay="200">
+                        <img src="https://images.unsplash.com/photo-1737498205245-dbb396c262ed?w=400" alt="Gallery 5">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(5)" data-animate="scale-in" data-delay="250">
+                        <img src="https://images.unsplash.com/photo-1652018539007-fda8e4103459?w=400" alt="Gallery 6">
+                        <div class="gallery-overlay"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding container" style="text-align: center;">
-            <h2 class="script-font" style="font-size: 3rem; color: var(--primary-color);" data-aos="fade-up">Wedding Gift</h2>
-            <p style="margin-bottom: 40px;" data-aos="fade-up">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, kami menerima kado secara cashless.</p>
-            
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-                <div class="glass-card" style="flex: 1; min-width: 280px; max-width: 350px;" data-aos="flip-left">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="BCA" style="height: 40px; margin-bottom: 20px;">
-                    <p style="font-size: 1.2rem; font-weight: bold; letter-spacing: 2px;">123 456 7890</p>
-                    <p style="margin-bottom: 20px;">a.n Budi Santoso</p>
-                    <button class="btn-gold" style="font-size: 0.9rem; padding: 8px 20px;" onclick="copyToClipboard('1234567890')">
-                        <i class="far fa-copy"></i> Salin Rekening
-                    </button>
-                </div>
-                <div class="glass-card" style="flex: 1; min-width: 280px; max-width: 350px;" data-aos="flip-right">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/2560px-Bank_Mandiri_logo_2016.svg.png" alt="Mandiri" style="height: 40px; margin-bottom: 20px;">
-                    <p style="font-size: 1.2rem; font-weight: bold; letter-spacing: 2px;">987 654 3210</p>
-                    <p style="margin-bottom: 20px;">a.n Siti Aminah</p>
-                    <button class="btn-gold" style="font-size: 0.9rem; padding: 8px 20px;" onclick="copyToClipboard('9876543210')">
-                        <i class="far fa-copy"></i> Salin Rekening
-                    </button>
-                </div>
-            </div>
-        </section>
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">×</button>
+            <img id="lightbox-img" src="" alt="Gallery Image">
+        </div>
 
-        <section class="section-padding" style="background: #1B4D3E; color: white;">
-            <div class="container text-center">
-                <h2 class="script-font" style="font-size: 3rem; margin-bottom: 30px; color: var(--secondary-color);">RSVP</h2>
-                <p style="margin-bottom: 30px;">Mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i untuk membantu kami mempersiapkan acara dengan lebih baik.</p>
+        <!-- RSVP Form -->
+        <section id="rsvp" data-section="rsvp">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 2rem;">
+                    <h2>RSVP / Attendance Confirmation</h2>
+                    <p style="color: var(--brown); margin-top: 1rem;">
+                    Please fill out the form below to confirm your attendance.
+                    </p>
+                </div>
+
+                <div class="melati-divider">
+                    <div class="melati-line"></div>
+                    <svg width="24" height="24" viewBox="0 0 80 80" fill="none">
+                        <circle cx="40" cy="40" r="6" fill="#C9A86A" opacity="0.8" />
+                        <ellipse cx="40" cy="25" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="55" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="40" cy="55" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="25" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A" />
+                    </svg>
+                    <div class="melati-line"></div>
+                </div>
+
+                @if ($errors->any())
+                <div class="alert alert-danger" style="margin-bottom: 1rem;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+             </div>
+                @endif
+
+                @if (session('success'))
+            <div class="alert alert-success" style="margin-bottom: 1rem;">
+                {{ session('success') }}
+            </div>
+                @endif
+
                 
-                <form class="glass-card" style="background: rgba(255,255,255,0.1); color: white; text-align: left; max-width: 600px; margin: 0 auto;" onsubmit="alert('Terima kasih! Konfirmasi Anda telah terkirim.'); return false;">
-                    <div style="margin-bottom: 15px;">
-                        <label>Nama Lengkap</label>
-                        <input type="text" style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px;" placeholder="Nama Anda">
+                <form action="{{ route('rsvp.store') }}" class="rsvp-form" onsubmit="handleRSVPSubmit(event)" method="POST" data-animate="fade-up">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+                        <label for="name">Full Name</label>
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label>Jumlah Tamu</label>
-                        <select style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px;">
-                            <option>1 Orang</option>
-                            <option>2 Orang</option>
+
+                    <div class="form-group">
+                        <input type="text" name="phone" id="phone" value="{{ old('phone') }}" required>
+                        <label for="phone">Phone Number</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                        <label for="email">Email</label>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="rsvp_status" name="rsvp_status" required>
+                            <option value="" disabled selected></option>
+                            <option value="coming">Will Attend</option>
+                            <option value="not_coming">Will Not Attend</option>
                         </select>
+                        <label for="rsvp_status">Attendance</label>
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label>Konfirmasi</label>
-                        <select style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px;">
-                            <option>Hadir</option>
-                            <option>Maaf, Tidak Bisa Hadir</option>
-                        </select>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder=" "></textarea>
+                        <label for="message">Messages & Wishes</label>
                     </div>
-                    <div style="margin-bottom: 20px;">
-                        <label>Pesan / Doa</label>
-                        <textarea rows="3" style="width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px;" placeholder="Ucapan untuk mempelai..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-gold" style="width: 100%;">Kirim Konfirmasi</button>
+
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        <div class="btn-loader"></div>
+                        <span>Submit Confirmation</span>
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <line x1="22" y1="2" x2="11" y2="13" stroke-width="2" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" stroke-width="2" />
+                        </svg>
+                    </button>
+
+                    <p class="form-note">Your presence means a great deal to us.</p>
                 </form>
             </div>
         </section>
 
-        <footer style="background: #0F2027; color: white; padding: 30px; text-align: center;">
-            <h2 class="script-font" style="font-size: 2.5rem; color: var(--secondary-color);">Budi & Siti</h2>
-            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">Created with ❤ using HTML & CSS</p>
-        </footer>
+        <!-- Map Section -->
+        <section id="map" data-section="map">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 2rem;">
+                    <h2>Event Venue</h2>
+                    <p style="color: var(--brown); margin-top: 1rem;">Hall of SMK Telkom Purwokerto</p>
+                </div>
 
+                <div class="melati-divider">
+                    <div class="melati-line"></div>
+                    <svg width="24" height="24" viewBox="0 0 80 80" fill="none">
+                        <circle cx="40" cy="40" r="6" fill="#C9A86A" opacity="0.8" />
+                        <ellipse cx="40" cy="25" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="55" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="40" cy="55" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A" />
+                        <ellipse cx="25" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A" />
+                    </svg>
+                    <div class="melati-line"></div>
+                </div>
+
+                <div class="map-grid">
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3894.4539381519535!2d109.24638807500143!3d-7.435272992575568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655e9d1768e4d1%3A0x959269c10818fa0c!2sSMK%20Telkom%20Purwokerto!5e1!3m2!1sid!2sid!4v1763617410581!5m2!1sid!2sid"
+                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <div class="map-details">
+                        <div class="map-address">
+                            <div class="map-icon">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2" />
+                                    <circle cx="12" cy="10" r="3" stroke-width="2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Detailed Address</h3>
+                                <p style="color: var(--brown); line-height: 1.75;">
+                                    Hall of SMK Telkom Purwokerto<br>
+                                    Jl. DI Panjaitan No 128 <br>
+                                    Purwokerto Selatan<br>
+                                    Jawa Tengah 53147
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1rem;">
+                            <a href="https://maps.app.goo.gl/nXnFj6u6Fd53rkot9" target="_blank" class="btn-directions">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11" stroke-width="2" />
+                                </svg>
+                                Open Google Maps
+                            </a>
+                        </div>
+
+                        <div class="map-note">
+                            <p>
+                                <span style="color: var(--gold);">⚠</span> Parking is available in the building area.
+                                Please arrive on time so you don’t miss the akad nikah ceremony.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing Section -->
+        <section id="closing" data-section="closing">
+            <div class="closing-content">
+                <div class="closing-icon">
+                    <svg width="48" height="48" fill="currentColor" viewBox="0 0 24 24"
+                        style="margin: 0 auto; display: block;">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <div
+                        style="width: 128px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 auto 2rem;">
+                    </div>
+                    <p class="closing-verse">
+                        "And one of His signs is that He created for you spouses from among yourselves so that you may find comfort in them. And He has placed between you compassion and mercy. Surely in this are signs for people who reflect."
+                    </p>
+                    <p class="closing-verse-ref">— QS. Ar-Rum: 21</p>
+                </div>
+
+                <div style="padding: 2rem 0;">
+                    <div
+                        style="width: 128px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 auto 1.5rem;">
+                    </div>
+                    <p class="closing-thanks">
+                        With your prayers and blessings,<br>we extend our deepest gratitude.
+                    </p>
+                    <p class="closing-salaam">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                </div>
+
+                <p class="closing-names">Rangga & Madinna</p>
+            </div>
+
+            <footer>
+                <div style="position: relative;">
+                    <svg class="batik-pattern" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.02;">
+                        <defs>
+                            <pattern id="batik-footer" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                                <circle cx="40" cy="40" r="15" fill="none" stroke="#8B6F47" stroke-width="0.5" />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#batik-footer)" />
+                    </svg>
+                    <div style="position: relative; z-index: 10;">
+                        <p>© 2025 Rangga & Madinna Wedding</p>
+                        <p>Made with love and tradition</p>
+                    </div>
+                </div>
+            </footer>
+        </section>
     </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top" onclick="scrollToTop()">↑</button>
 
     <script src="{{ asset('js/script.js') }}"></script>
+    
 </body>
+
 </html>
