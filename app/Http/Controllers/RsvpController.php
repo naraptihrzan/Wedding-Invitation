@@ -10,14 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class RsvpController extends Controller
 {
-     /**
-     * Menampilkan form RSVP
-     */
-    public function index()
-    {
-        return view('rsvp.index');
-    }
-
     /**
      * Menyimpan data RSVP
      */
@@ -31,7 +23,10 @@ class RsvpController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('rsvp.index')
+            if ($request->wantsJson()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+            return redirect()->to(url()->previous() . '#rsvp')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -44,7 +39,11 @@ class RsvpController extends Controller
             GenerateVoucherJob::dispatch($guest);
         }
 
-        return redirect()->route('rsvp.index')
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Terima kasih telah melakukan RSVP! QR Code akan dikirim via Email & WhatsApp.'], 200);
+        }
+
+        return redirect()->to(url()->previous() . '#rsvp')
                     ->with('success', 'Terima kasih telah melakukan RSVP!');
     }
 }

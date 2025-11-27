@@ -8,7 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ time() }}">
 </head>
 
 <body>
@@ -136,7 +136,7 @@
                         <div class="couple-photo-wrapper">
                             <div class="photo-frame"></div>
                             <div class="couple-photo">
-                                <img src="assets/image/madinah.jpg" alt="Madinna">
+                                <img src="{{ asset('image/madinah.jpg') }}" alt="Madinna">
                             </div>
                         </div>
                         <h3 class="couple-name">Madinna Naila Kalyca Hoffi</h3>
@@ -151,7 +151,7 @@
                         <div class="couple-photo-wrapper">
                             <div class="photo-frame"></div>
                             <div class="couple-photo">
-                                <img src="assets/image/rangga.jpg" alt="Rangga">
+                                <img src="{{ asset('image/rangga.jpg') }}" alt="Rangga">
                             </div>
                         </div>
                         <h3 class="couple-name">Rangga Prayoga Wibowo</h3>
@@ -485,21 +485,9 @@
                     <div class="melati-line"></div>
                 </div>
 
-                @if ($errors->any())
-                <div class="alert alert-danger" style="margin-bottom: 1rem;">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-                </ul>
-             </div>
-                @endif
+                {{-- Error alerts handled by JS Toast --}}
 
-                @if (session('success'))
-            <div class="alert alert-success" style="margin-bottom: 1rem;">
-                {{ session('success') }}
-            </div>
-                @endif
+                {{-- Success alerts handled by JS Toast --}}
 
                 
                 <form action="{{ route('rsvp.store') }}" class="rsvp-form" onsubmit="handleRSVPSubmit(event)" method="POST" data-animate="fade-up">
@@ -669,7 +657,7 @@
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scroll-top" onclick="scrollToTop()">↑</button>
 
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}?v={{ time() }}"></script>
     
 </body>
 

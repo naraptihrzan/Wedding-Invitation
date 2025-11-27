@@ -17,7 +17,7 @@ class DashboardController extends Controller
     /** Form tambah tamu */
     public function create()
     {
-        return view('dashboardadmin.create');
+        return view('dashboard.create');
     }
 
     /** Simpan tamu baru */
@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
         Guest::create($request->all());
 
-        return redirect()->route('dashboard.index')
+        return redirect()->route('dashboardadmin.index')
             ->with('success', 'Data tamu berhasil ditambahkan!');
     }
 
@@ -40,14 +40,14 @@ class DashboardController extends Controller
     public function show($id)
     {
         $guest = Guest::findOrFail($id);
-        return view('dashboardadmin.show', compact('guest'));
+        return view('dashboard.show', compact('guest'));
     }
 
     /** Form edit */
     public function edit($id)
     {
         $guest = Guest::findOrFail($id);
-        return view('dashboardadmin.edit', compact('guest'));
+        return view('dashboard.edit', compact('guest'));
     }
 
     /** Update tamu */
@@ -64,7 +64,7 @@ class DashboardController extends Controller
 
         $guest->update($request->all());
 
-        return redirect()->route('dashboard.index')
+        return redirect()->route('dashboardadmin.index')
             ->with('success', 'Data tamu berhasil diperbarui!');
     }
 
@@ -73,7 +73,7 @@ class DashboardController extends Controller
     {
         Guest::findOrFail($id)->delete();
 
-        return redirect()->route('dashboard.index')
+        return redirect()->route('dashboardadmin.index')
             ->with('success', 'Data tamu berhasil dihapus!');
     }
 }

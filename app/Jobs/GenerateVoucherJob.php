@@ -117,6 +117,8 @@ Berikut voucher diskon 10% Anda. Silakan tunjukkan QR Code berikut kepada vendor
 
             $response = Http::withHeaders([
                 'Authorization' => $apiKey,
+            ])->withOptions([
+                'verify' => false, // Disable SSL verification for local dev
             ])->post('https://api.fonnte.com/send', [
                 'target'  => $phone,
                 'message' => $caption,

@@ -47,51 +47,7 @@ function scrollToSection(sectionId) {
 }
 
 // --- RSVP SUBMIT WITHOUT REDIRECT (AJAX) ---
-function handleRSVPSubmit(event) {
-    event.preventDefault();
-
-    const form = event.target;
-    const submitBtn = document.getElementById('submit-btn');
-
-    submitBtn.classList.add('loading');
-    submitBtn.disabled = true;
-
-    const formData = new FormData(form);
-
-    fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-            "X-Requested-With": "XMLHttpRequest",
-            "Accept": "application/json"
-        }
-    })
-        .then(async (res) => {
-            const data = await res.json();
-
-            if (res.ok) {
-                alert(data.message);
-                form.reset();
-            } else {
-                if (data.errors) {
-                    let errorText = "";
-                    Object.keys(data.errors).forEach(key => {
-                        errorText += `${data.errors[key][0]}\n`;
-                    });
-                    alert(errorText);
-                } else {
-                    alert("Terjadi kesalahan, coba lagi.");
-                }
-            }
-        })
-        .catch(() => {
-            alert("Terjadi kesalahan jaringan. Coba lagi ya.");
-        })
-        .finally(() => {
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-        });
-}
+// Old handleRSVPSubmit removed - replaced by new implementation at the bottom
 
 // Pasang listener agar work untuk form rsvp
 document.addEventListener("DOMContentLoaded", () => {
@@ -261,3 +217,112 @@ let lastScrollY = window.pageYOffset;
 window.addEventListener('load', () => {
     document.body.style.opacity = '1';
 });
+
+// --- TOAST NOTIFICATION SYSTEM ---
+class NotificationSystem {
+    constructor() {
+        this.container = document.createElement('div');
+        this.container.className = 'notification-container';
+        document.body.appendChild(this.container);
+    }
+
+    show(message, type = 'info', duration = 5000) {
+        const toast = document.createElement('div');
+        toast.className = `notification-toast ${type}`;
+
+        const icon = this.getIcon(type);
+
+        toast.innerHTML = `
+            <div class="notification-icon">${icon}</div>
+            <div class="notification-content">
+                <div class="notification-title">${this.getTitle(type)}</div>
+                <div class="notification-message">${message}</div>
+            </div>
+            <button class="notification-close" onclick="this.parentElement.remove()">×</button>
+            <div class="notification-progress" style="animation-duration: ${duration}ms"></div>
+        `;
+
+        this.container.appendChild(toast);
+
+        // Trigger animation
+        requestAnimationFrame(() => {
+            toast.classList.add('show');
+        });
+
+        // Auto remove
+        setTimeout(() => {
+            toast.classList.add('hide');
+            toast.addEventListener('transitionend', () => {
+                toast.remove();
+            });
+        }, duration);
+    }
+
+    getIcon(type) {
+        switch (type) {
+            case 'success':
+                return `<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+            case 'error':
+                return `<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+            default:
+                return `<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+        }
+    }
+
+    getTitle(type) {
+        switch (type) {
+            case 'success': return 'Success';
+            case 'error': return 'Error';
+            default: return 'Information';
+        }
+    }
+}
+
+const notifications = new NotificationSystem();
+
+// --- RSVP SUBMIT WITH TOAST ---
+function handleRSVPSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const submitBtn = document.getElementById('submit-btn');
+
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "Accept": "application/json"
+        }
+    })
+        .then(async (res) => {
+            const data = await res.json();
+
+            if (res.ok) {
+                notifications.show(data.message || "Konfirmasi kehadiran berhasil dikirim!", 'success');
+                form.reset();
+            } else {
+                if (data.errors) {
+                    let errorText = "";
+                    Object.keys(data.errors).forEach(key => {
+                        errorText += `${data.errors[key][0]}\n`;
+                    });
+                    notifications.show(errorText, 'error');
+                } else {
+                    notifications.show("Terjadi kesalahan, silakan coba lagi.", 'error');
+                }
+            }
+        })
+        .catch(() => {
+            notifications.show("Terjadi kesalahan jaringan. Periksa koneksi Anda.", 'error');
+        })
+        .finally(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        });
+}

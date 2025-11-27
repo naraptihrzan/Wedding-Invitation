@@ -11,6 +11,12 @@ class VoucherScanController extends Controller
      */
     public function index()
     {
-        return view('admin.scan');
+        $recentVouchers = \App\Models\Voucher::with('guest')
+            ->where('status', 'used')
+            ->orderBy('used_at', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('admin.scan', compact('recentVouchers'));
     }
 }

@@ -20,7 +20,6 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 // ---------------------------
 // RSVP Page (Tamu)
 // ---------------------------
-Route::get('/rsvp', [RsvpController::class, 'index'])->name('rsvp.index');
 Route::post('/rsvp', [RsvpController::class, 'store'])->name('rsvp.store');
 
 Route::get('/test-qr', function () {
@@ -58,3 +57,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Auth Routes (Breeze)
 // ---------------------------
 require __DIR__.'/auth.php';
+
+
