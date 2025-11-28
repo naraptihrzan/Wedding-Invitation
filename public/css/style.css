@@ -248,6 +248,10 @@ p {
     position: absolute;
     inset: 0;
     border: 2px solid var(--gold);
+    background-image: url('/image/invitation_bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     border-radius: 20px;
     opacity: 0.4;
 }
@@ -339,22 +343,6 @@ p {
     flex-wrap: wrap;
 }
 
-.btn-secondary {
-    padding: 0.875rem 2rem;
-    border-radius: 50px;
-    border: 1px solid rgba(201, 168, 106, 0.4);
-    color: var(--brown-dark);
-    background: rgba(255, 255, 255, 0.8);
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--brown);
-}
-
 .hero-badges {
     display: flex;
     justify-content: center;
@@ -402,6 +390,25 @@ p {
 
 .btn-open:hover {
     box-shadow: 0 6px 30px rgba(201, 168, 106, 0.5);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    margin-top: 2rem;
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(201, 168, 106, 0.4);
+    color: var(--brown-dark);
+    background: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--brown);
     transform: scale(1.05);
 }
 
@@ -506,6 +513,10 @@ p {
     opacity: 0.6;
     transform: rotate(3deg);
     transition: transform 0.5s ease;
+    background-image: url('/image/invitation_bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .couple-card:nth-child(2) .photo-frame {
@@ -518,8 +529,8 @@ p {
 
 .couple-photo {
     position: relative;
-    width: 280px;
-    height: 380px;
+    width: 240px;
+    height: 340px;
     border-radius: 150px 150px 20px 20px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(139, 111, 71, 0.15);

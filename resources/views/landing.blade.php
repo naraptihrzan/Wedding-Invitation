@@ -54,10 +54,9 @@
         </svg>
 
         <div class="hero-content">
+            <div class="frame-border-1"></div>
             <div class="hero-frame">
-                <div class="frame-border-1"></div>
-                <div class="frame-border-2"></div>
-
+                
                 <div style="position: relative;">
                     <p class="hero-subtitle" data-animate="fade-up" data-delay="0">The Wedding of</p>
                     <h1 class="couple-names" data-animate="fade-up" data-delay="100">Rangga & Madinna</h1>
@@ -65,9 +64,10 @@
                     <p class="hero-text" data-animate="fade-up" data-delay="200">
                         With heartfelt gratitude, we joyfully invite you to share in the celebration of our marriage.
                     </p>
-
-                    <p class="countdown-title" id="countdown-date" data-animate="fade-up" data-delay="250">
-                        Counting down to December 2
+                    <p class="hero-text" data-animate="fade-up" data-delay="200">
+                        2 December 2025
+                        <br>
+                        Hall of SMK Telkom Purwokerto
                     </p>
                     <div class="countdown" aria-live="polite" data-animate="fade-up" data-delay="300">
                         <div class="countdown-item">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <div class="hero-badges" data-animate="fade-up" data-delay="400">
+                <!-- <div class="hero-badges" data-animate="fade-up" data-delay="400">
                     <div class="hero-badge">
                         <p class="hero-badge-title">Date of Ceremony</p>
                         <p class="hero-badge-value">2 December 2025</p>
@@ -107,7 +107,7 @@
                         <p class="hero-badge-title">Dress Code</p>
                         <p class="hero-badge-value">Modern Javanese Attire</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -131,21 +131,6 @@
                 </div>
 
                 <div class="couple-grid">
-                    <!-- Bride -->
-                    <div class="couple-card" data-animate="fade-right">
-                        <div class="couple-photo-wrapper">
-                            <div class="photo-frame"></div>
-                            <div class="couple-photo">
-                                <img src="{{ asset('image/madinah.jpg') }}" alt="Madinna">
-                            </div>
-                        </div>
-                        <h3 class="couple-name">Madinna Naila Kalyca Hoffi</h3>
-                        <div class="couple-parents">
-                            <span>Daughter of</span>
-                            Mr. Fadhil Putra & Mrs. Nadia Mira
-                        </div>
-                    </div>
-
                     <!-- Groom -->
                     <div class="couple-card" data-animate="fade-left">
                         <div class="couple-photo-wrapper">
@@ -158,6 +143,21 @@
                         <div class="couple-parents">
                             <span>Son of</span>
                             Mr. Avichena & Mrs. Mischa Riyumi
+                        </div>
+                    </div>
+
+                    <!-- Bride -->
+                    <div class="couple-card" data-animate="fade-right">
+                        <div class="couple-photo-wrapper">
+                            <div class="photo-frame"></div>
+                            <div class="couple-photo">
+                                <img src="{{ asset('image/madinah.jpg') }}" alt="Madinna">
+                            </div>
+                        </div>
+                        <h3 class="couple-name">Madinna Naila Kalyca Hoffi</h3>
+                        <div class="couple-parents">
+                            <span>Daughter of</span>
+                            Mr. Fadhil Putra & Mrs. Nadia Mira
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                     </p>
                 </div>
 
-                <div class="events-grid">
+                <div class="">
                     <!-- Akad -->
                     <div class="event-card" data-animate="fade-up">
                         <div class="event-icon">
@@ -242,57 +242,7 @@
                         </div>
                     </div>
 
-                    <!-- Resepsi -->
-                    <div class="event-card" data-animate="fade-up" data-delay="100">
-                        <div class="event-icon">
-                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                <circle cx="40" cy="40" r="6" fill="#C9A86A" opacity="0.8" />
-                                <ellipse cx="40" cy="25" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A"
-                                    stroke-width="1" />
-                                <ellipse cx="55" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A"
-                                    stroke-width="1" />
-                                <ellipse cx="40" cy="55" rx="8" ry="12" fill="#F5F5DC" stroke="#C9A86A"
-                                    stroke-width="1" />
-                                <ellipse cx="25" cy="40" rx="12" ry="8" fill="#F5F5DC" stroke="#C9A86A"
-                                    stroke-width="1" />
-                            </svg>
-                        </div>
-                        <h3 class="event-title">Wedding Reception</h3>
-                        <div class="event-details">
-                            <div class="event-detail-item">
-                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" />
-                                    <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" />
-                                    <line x1="3" y1="10" x2="21" y2="10" stroke-width="2" />
-                                </svg>
-                                <div>
-                                    <p style="color: var(--brown-dark);">Tuesday, December 2 2025</p>
-                                </div>
-                            </div>
-                            <div class="event-detail-item">
-                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <circle cx="12" cy="12" r="10" stroke-width="2" />
-                                    <polyline points="12 6 12 12 16 14" stroke-width="2" />
-                                </svg>
-                                <div>
-                                    <p style="color: var(--brown-dark);">11.00 - 15.00 WIB</p>
-                                </div>
-                            </div>
-                            <div class="event-detail-item">
-                                <svg class="event-detail-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2" />
-                                    <circle cx="12" cy="10" r="3" stroke-width="2" />
-                                </svg>
-                                <div>
-                                    <p style="color: var(--brown-dark);">Hall of SMK Telkom Purwokerto</p>
-                                    <p style="color: var(--brown); font-size: 0.875rem; margin-top: 0.25rem;">
-                                        Jln. di pandjaitan no. 128
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            
                 </div>
 
                 <div class="text-center">
@@ -321,8 +271,6 @@
                         <h3>Siraman</h3>
                         <p>A cleansing ritual to purify the body and soul as a preparation for the sacred wedding ceremony.</p>
                         <div class="timeline-meta">
-                            <span>2-Dec</span>
-                            <span>Hall of SMK Telkom Purwokerto</span>
                         </div>
                     </article>
                     <article class="timeline-card" data-animate="fade-left" data-delay="100">
@@ -330,8 +278,6 @@
                         <h3>Midodareni</h3>
                         <p>An evening of heartfelt prayers, seeking blessings and harmony from the extended family.</p>
                         <div class="timeline-meta">
-                            <span>2-Dec</span>
-                            <span>Hall of SMK Telkom Purwokerto</span>
                         </div>
                     </article>
                     <article class="timeline-card" data-animate="fade-left" data-delay="150">
@@ -339,8 +285,6 @@
                         <h3>Akad Nikah</h3>
                         <p>A sacred marriage solemnization, marking the beginning of our journey as husband and wife.</p>
                         <div class="timeline-meta">
-                            <span>2-Dec</span>
-                            <span>Hall of SMK Telkom Purwokerto</span>
                         </div>
                     </article>
                     <article class="timeline-card" data-animate="fade-left" data-delay="200">
@@ -348,8 +292,6 @@
                         <h3>Resepsi</h3>
                         <p>A joyful celebration shared with family and closest friends to honor the union of our hearts.</p>
                         <div class="timeline-meta">
-                            <span>2-Dec</span>
-                            <span>Hall of SMK Telkom Purwokerto</span>
                         </div>
                     </article>
                 </div>
