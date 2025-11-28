@@ -27,7 +27,7 @@
             <a href="#rsvp" data-nav="rsvp">RSVP</a>
             <a href="#map" data-nav="map">Location</a>
         </nav>
-        <button class="nav-cta" onclick="scrollToSection('rsvp')">Konfirmasi</button>
+        <button class="nav-cta" onclick="scrollToSection('rsvp')">Confirmation</button>
         <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
             <span></span>
             <span></span>
@@ -192,7 +192,7 @@
                     </p>
                 </div>
 
-                <div class="">
+
                     <!-- Akad -->
                     <div class="event-card" data-animate="fade-up">
                         <div class="event-icon">
@@ -242,8 +242,6 @@
                         </div>
                     </div>
 
-            
-                </div>
 
                 <div class="text-center">
                     <div class="event-note">
@@ -372,27 +370,27 @@
 
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox(0)" data-animate="scale-in">
-                        <img src="https://images.unsplash.com/photo-1651924739855-ef03b6b9f929?w=400" alt="Gallery 1">
+                        <img src="{{ asset('image/foto1.jpg') }}" alt="Gallery 1">
                         <div class="gallery-overlay"></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(1)" data-animate="scale-in" data-delay="50">
-                        <img src="https://images.unsplash.com/photo-1514846528774-8de9d4a07023?w=400" alt="Gallery 2">
+                        <img src="{{ asset('image/foto2.jpg') }}" alt="Gallery 2">
                         <div class="gallery-overlay"></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(2)" data-animate="scale-in" data-delay="100">
-                        <img src="https://images.unsplash.com/photo-1519657502999-ab785d28a1f6?w=400" alt="Gallery 3">
+                        <img src="{{ asset('image/foto3.jpg') }}" alt="Gallery 3">
                         <div class="gallery-overlay"></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(3)" data-animate="scale-in" data-delay="150">
-                        <img src="https://images.unsplash.com/photo-1762708592558-f20927d09a43?w=400" alt="Gallery 4">
+                        <img src="{{ asset('image/foto4.jpg') }}" alt="Gallery 4">
                         <div class="gallery-overlay"></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(4)" data-animate="scale-in" data-delay="200">
-                        <img src="https://images.unsplash.com/photo-1737498205245-dbb396c262ed?w=400" alt="Gallery 5">
+                        <img src="{{ asset('image/foto5.jpg') }}" alt="Gallery 5">
                         <div class="gallery-overlay"></div>
                     </div>
                     <div class="gallery-item" onclick="openLightbox(5)" data-animate="scale-in" data-delay="250">
-                        <img src="https://images.unsplash.com/photo-1652018539007-fda8e4103459?w=400" alt="Gallery 6">
+                        <img src="{{ asset('image/foto6.jpg') }}" alt="Gallery 6">
                         <div class="gallery-overlay"></div>
                     </div>
                 </div>
