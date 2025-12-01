@@ -14,6 +14,18 @@ function openInvitation() {
         content.classList.remove('hidden');
         content.classList.add('fade-in');
 
+        // Play Music
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-control');
+
+        if (audio) {
+            audio.play().then(() => {
+                musicBtn.classList.remove('hidden');
+            }).catch(error => {
+                console.log("Audio play failed:", error);
+            });
+        }
+
         // Smooth scroll to couple section
         setTimeout(() => {
             const coupleSection = document.getElementById('couple');
@@ -21,6 +33,26 @@ function openInvitation() {
                 coupleSection.scrollIntoView({ behavior: 'smooth' });
             }
         }, 300);
+    }
+}
+
+// Music Control
+function toggleMusic() {
+    const audio = document.getElementById('bg-music');
+    const iconPause = document.getElementById('icon-pause');
+    const iconPlay = document.getElementById('icon-play');
+    const musicBtn = document.getElementById('music-control');
+
+    if (audio.paused) {
+        audio.play();
+        iconPause.classList.remove('hidden');
+        iconPlay.classList.add('hidden');
+        musicBtn.classList.remove('paused');
+    } else {
+        audio.pause();
+        iconPause.classList.add('hidden');
+        iconPlay.classList.remove('hidden');
+        musicBtn.classList.add('paused');
     }
 }
 

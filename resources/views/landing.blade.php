@@ -597,6 +597,22 @@
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scroll-top" onclick="scrollToTop()">↑</button>
 
+    <!-- Audio Background -->
+    <audio id="bg-music" loop>
+        <source src="{{ asset('backsound/Epic Orchestra Java Background Music Cinematic Orkestra Jawa Khas Nusantara - Framelens Music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="music-control" class="music-control hidden" onclick="toggleMusic()">
+        <svg id="icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        <svg id="icon-play" class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+    </button>
+
     <script src="{{ asset('js/script.js') }}?v={{ time() }}"></script>
     
 </body>
