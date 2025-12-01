@@ -134,6 +134,9 @@ function getNextCountdownDate() {
         target = new Date(currentYear + 1, 11, 2, 0, 0, 0);
     }
 
+    // Tambah 10 jam
+    target.setHours(target.getHours() + 10);
+
     return target;
 }
 
