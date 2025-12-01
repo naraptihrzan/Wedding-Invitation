@@ -126,18 +126,9 @@ const countdownElements = {
 };
 
 function getNextCountdownDate() {
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    let target = new Date(currentYear, 11, 2, 0, 0, 0); // 2 December
-
-    if (target.getTime() <= now.getTime()) {
-        target = new Date(currentYear + 1, 11, 2, 0, 0, 0);
-    }
-
-    // Tambah 10 jam
-    target.setHours(target.getHours() + 10);
-
-    return target;
+    // Target: 2 December 2025, 10:00:00
+    // Month is 0-indexed (11 = December)
+    return new Date(2025, 11, 2, 10, 0, 0);
 }
 
 const countdownTargetDate = getNextCountdownDate();
