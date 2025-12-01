@@ -120,11 +120,20 @@ php artisan queue:work
 4. Submit.
 5. Cek Email & WhatsApp (pastikan Queue Worker berjalan). Tamu akan menerima QR Code.
 
-### 2. Alur Admin (Scan QR)
-1. Login sebagai Admin (pastikan sudah register/seeding user).
-2. Buka `http://localhost:8000/admin/voucher/scan`.
-3. Gunakan kamera HP/Laptop untuk scan QR Code tamu.
-4. Jika valid, status voucher akan berubah menjadi `used` dan muncul notifikasi sukses.
+### 2. Cara Menggunakan
+#### A. Menggunakan Kamera HP/Laptop
+1.  **Login sebagai Admin**.
+2.  Masuk ke **Dashboard** -> **Scan Voucher**.
+3.  Izinkan akses kamera.
+4.  Arahkan kamera ke QR Code.
+
+#### B. Menggunakan Alat Scanner (Barcode Scanner)
+1.  Pastikan alat scanner terhubung ke laptop (USB/Bluetooth).
+2.  Buka halaman **Scan Voucher**.
+3.  Pastikan kursor aktif di kolom **"Input Manual / Alat Scanner"**.
+4.  Scan QR Code menggunakan alat.
+5.  Alat akan otomatis mengetik kode dan menekan Enter.
+6.  Sistem memvalidasi kode.
 
 ## ❓ Troubleshooting (Masalah Umum)
 

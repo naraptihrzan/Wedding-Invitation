@@ -1,10 +1,10 @@
 const galleryImages = [
-    'https://images.unsplash.com/photo-1651924739855-ef03b6b9f929?w=1200',
-    'https://images.unsplash.com/photo-1514846528774-8de9d4a07023?w=1200',
-    'https://images.unsplash.com/photo-1519657502999-ab785d28a1f6?w=1200',
-    'https://images.unsplash.com/photo-1762708592558-f20927d09a43?w=1200',
-    'https://images.unsplash.com/photo-1737498205245-dbb396c262ed?w=1200',
-    'https://images.unsplash.com/photo-1652018539007-fda8e4103459?w=1200'
+    '/image/foto1.jpg',
+    '/image/foto2.jpg',
+    '/image/foto3.jpg',
+    '/image/foto4.jpg',
+    '/image/foto5.jpg',
+    '/image/foto6.jpg'
 ];
 
 // Open invitation

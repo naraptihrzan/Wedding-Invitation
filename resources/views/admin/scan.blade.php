@@ -125,6 +125,22 @@
     <div class="container">
         <!-- Scanner Section -->
         <div class="card">
+            <!-- Manual Input / Physical Scanner -->
+            <div style="margin-bottom: 1.5rem; text-align: center;">
+                <label for="manual-code" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #374151;">Input Manual / Alat Scanner</label>
+                <div style="display: flex; justify-content: center; gap: 0.5rem;">
+                    <input type="text" id="manual-code" placeholder="Klik di sini lalu scan..." 
+                        style="padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; width: 100%; max-width: 300px; font-size: 1rem;"
+                        autofocus>
+                    <button id="btn-manual-submit" class="btn-back" style="background-color: #2563eb; color: white; border: none; cursor: pointer;">
+                        Cek
+                    </button>
+                </div>
+                <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">
+                    <em>Pastikan kursor aktif di kolom input saat menggunakan alat scanner.</em>
+                </p>
+            </div>
+
             <div id="qr-reader"></div>
             <div id="scan-result">
                 Arahkan kamera ke QR Code Voucher...
@@ -228,6 +244,30 @@
 
                 resultContainer.innerHTML += ` <button onclick="window.location.reload()" class="btn-reload">Scan Lagi</button>`;
             }
+            // Handle Manual Input / Physical Scanner
+            const manualInput = document.getElementById('manual-code');
+            const manualBtn = document.getElementById('btn-manual-submit');
+
+            function handleManualSubmit() {
+                const code = manualInput.value.trim();
+                if (code) {
+                    resultContainer.innerHTML = `<span class="text-blue">Memvalidasi kode ${code}...</span>`;
+                    redeemVoucher(code);
+                    manualInput.value = ''; // Clear input after submit
+                    manualInput.focus(); // Refocus for next scan
+                }
+            }
+
+            manualBtn.addEventListener('click', handleManualSubmit);
+
+            manualInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    handleManualSubmit();
+                }
+            });
+
+            // Auto-focus input on load
+            manualInput.focus();
         });
     </script>
 </body>
